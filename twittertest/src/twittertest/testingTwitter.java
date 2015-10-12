@@ -13,7 +13,12 @@ public class testingTwitter {
 		    try {
 				
 		    writer.append(username);
+		    content = content.replaceAll("\n", " ");
+		    content = content.replaceAll(",", "");
+		    writer.append(',');
 		    writer.append(content);
+		    writer.append(',');
+		    writer.append("");
 		    writer.append('\n');
 		    writer.flush();
 		    } 
@@ -21,6 +26,7 @@ public class testingTwitter {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 	}
 	public static void main(String[] args) throws TwitterException, IOException{
 		ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -31,13 +37,13 @@ public class testingTwitter {
 		  .setOAuthAccessTokenSecret("GpYwLKyRtG5AE5BzgOdcUdZph2fxuyTuYldtqY0cVOb2T");
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
-		String file = "C:\\Users\\Cassidy\\test.csv";
+		String file = "C:\\Users\\A00227178\\rugby.csv";
 		FileWriter writer = new FileWriter(file);
-		
 	    try {
-            Query query = new Query("Celtic Pure");
+            Query query = new Query("#IREvsFRA ");
             QueryResult result;
             query.setSince("2015-10-05");
+            int count = 0;
             
             do {
                 result = twitter.search(query);
@@ -47,6 +53,8 @@ public class testingTwitter {
                 	{		
                 		System.out.println("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
                 		generateCsvFile(writer, tweet.getUser().getScreenName(), tweet.getText());
+                		count++;
+                		System.out.println(count);
                 	}
                 }
                 
