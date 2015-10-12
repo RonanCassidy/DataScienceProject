@@ -16,7 +16,6 @@ public class testingTwitter {
 		    writer.append(content);
 		    writer.append('\n');
 		    writer.flush();
-		    writer.close();
 		    } 
 		    catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -32,7 +31,7 @@ public class testingTwitter {
 		  .setOAuthAccessTokenSecret("GpYwLKyRtG5AE5BzgOdcUdZph2fxuyTuYldtqY0cVOb2T");
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
-		String file = "c:\\Users\\A00227178";
+		String file = "C:\\Users\\Cassidy\\test.csv";
 		FileWriter writer = new FileWriter(file);
 		
 	    try {
@@ -53,6 +52,8 @@ public class testingTwitter {
                 
             } while ((query = result.nextQuery()) != null);
 
+            writer.close();
+		    
             System.exit(0);
         } catch (TwitterException te) {
             te.printStackTrace();
