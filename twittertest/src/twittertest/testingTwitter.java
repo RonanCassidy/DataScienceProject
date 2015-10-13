@@ -31,33 +31,28 @@ public class testingTwitter {
 	public static void main(String[] args) throws TwitterException, IOException{
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
-		  .setOAuthConsumerKey("zg4Ipy0BXMucvp8Ct5R7igYds")
-		  .setOAuthConsumerSecret("U9wpwN3ZHfYm5repbC2Rfz6dY31WI0LhW4qUcdPAW01ItVPSqC")
-		  .setOAuthAccessToken("3874319477-LvOFbMnHwBEd2MPNBj8MWXtXaU5hwf0ctJtgpE2")
-		  .setOAuthAccessTokenSecret("GpYwLKyRtG5AE5BzgOdcUdZph2fxuyTuYldtqY0cVOb2T");
+		  .setOAuthConsumerKey("dFiRSJUUVPkB11s1QExT1q6DL")
+		  .setOAuthConsumerSecret("VuGhGguFesQ30g2LLeWYdSaA8B3QYhI1kOaRGMHNiC3pmiXj13")
+		  .setOAuthAccessToken("91903648-9GUifKt8cyThSO7IuHN9Fo3au3NqW4D5YjkzM6hAO")
+		  .setOAuthAccessTokenSecret("PjRxvz7izdtvrm83UJUwwuBi0bIjiTHFpzzB3orEGaNOQ");
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
-		String file = "C:\\Users\\A00227178\\rugby.csv";
+		String file = "C:\\Users\\A00227178\\POC.csv";
 		FileWriter writer = new FileWriter(file);
 	    try {
-            Query query = new Query("#IREvsFRA ");
+            Query query = new Query("rwc2015");
             QueryResult result;
-            query.setSince("2015-10-05");
-            int count = 0;
-            
             do {
                 result = twitter.search(query);
                 List<Status> tweets = result.getTweets();
                 for (Status tweet : tweets) {
-                	if(!tweet.getText().startsWith("RT"))
-                	{		
-                		System.out.println("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
-                		generateCsvFile(writer, tweet.getUser().getScreenName(), tweet.getText());
-                		count++;
-                		System.out.println(count);
-                	}
-                }
-                
+                	
+                		
+                			System.out.println("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
+                			generateCsvFile(writer, tweet.getUser().getScreenName(), tweet.getText());
+                			System.out.println(result.getTweets().size());
+                		
+                }   
             } while ((query = result.nextQuery()) != null);
 
             writer.close();
