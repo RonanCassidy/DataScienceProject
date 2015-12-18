@@ -37,10 +37,10 @@ public class testingTwitter {
 		  .setOAuthAccessTokenSecret("GpYwLKyRtG5AE5BzgOdcUdZph2fxuyTuYldtqY0cVOb2T");
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
-		String file = "C:\\Users\\A00227178\\IREvsARG.csv";
+		String file = "C:\\Users\\A00227178\\crap.csv";
 		FileWriter writer = new FileWriter(file);
 	    try {
-            Query query = new Query("leeds");
+            Query query = new Query("crap");
             QueryResult result;
             query.setCount(-1);
             do {
